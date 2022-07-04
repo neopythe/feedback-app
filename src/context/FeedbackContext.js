@@ -36,8 +36,10 @@ export const FeedbackProvider = ({ children }) => {
   }
 
   // delete feedback
-  const deleteFeedback = (id) => {
+  const deleteFeedback = async (id) => {
     if (window.confirm('Are you sure you want to delete?')) {
+      await axios.delete(`/feedback/${id}`)
+
       setFeedback(feedback.filter((item) => item.id !== id))
     }
   }
@@ -51,10 +53,18 @@ export const FeedbackProvider = ({ children }) => {
   }
 
   // update feedback item
-  const updateFeedback = (id, item, updatedItem) => {
+  const updateFeedback = async (id, item, updatedItem) => {
+    const response = await axios.put(
+      `/feedback/${id}`,
+      JSON.stringify(updatedItem),
+      {
+        headers: { 'Content-Type': 'application/json' },
+      }
+    )
+
     setFeedback(
       feedback.map((item) =>
-        item.id === id ? { ...item, ...updatedItem } : item
+        item.id === id ? { ...item, ...response.data } : item
       )
     )
     setFeedbackEdit({
