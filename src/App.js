@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 
+import AboutIconLink from './components/AboutIconLink'
 import AboutPage from './pages/AboutPage'
 import Header from './components/Header'
 import FeedbackData from './data/FeedbackData'
@@ -44,6 +45,7 @@ function App() {
           ></Route>
           <Route path="/about" element={<AboutPage />} />
         </Routes>
+        <AboutIconLink />
       </div>
     </Router>
   )
