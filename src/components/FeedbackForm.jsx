@@ -19,8 +19,6 @@ function FeedbackForm() {
       setBtnDisabled(false)
       setText(feedbackEdit.item.text)
       setRating(feedbackEdit.item.rating)
-    } else {
-      setBtnDisabled(true)
     }
   }, [feedbackEdit])
 
@@ -54,6 +52,8 @@ function FeedbackForm() {
       }
 
       setText('')
+      setBtnDisabled(true)
+      setRating(10)
     }
   }
 
